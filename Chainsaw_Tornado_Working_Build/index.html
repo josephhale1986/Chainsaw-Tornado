@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Chainsaw Tornado</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="manifest" href="manifest.webmanifest">
+  <style>
+    html, body {
+      margin: 0; padding: 0; background: #000; font-family: monospace; overflow: hidden;
+    }
+    #menu, #gameCanvas {
+      width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: center;
+    }
+    #menu {
+      flex-direction: column; background: url('assets/start_bg.png') center/cover no-repeat;
+    }
+    #menu img {
+      width: 200px; height: auto; margin-bottom: 20px;
+    }
+    #menu button {
+      font-size: 20px; padding: 12px 24px; margin: 10px; cursor: pointer; border: none; border-radius: 6px;
+      background: #4ade80; color: #000; transition: transform 0.2s ease;
+    }
+    #menu button:hover {
+      transform: scale(1.1);
+    }
+    canvas { display: none; background: linear-gradient(#4f4f4f, #222); }
+  </style>
+</head>
+<body>
+  <div id="menu">
+    <img src="assets/lumberjack_title.png" alt="Chainsaw Tornado">
+    <button onclick="startGame()">Start Game</button>
+    <button onclick="showHighScore()">High Score</button>
+  </div>
+
+  <canvas id="gameCanvas" width="800" height="400"></canvas>
+
+  <script>
+    function startGame() {
+      document.getElementById('menu').style.display = 'none';
+      const canvas = document.getElementById('gameCanvas');
+      canvas.style.display = 'block';
+      const script = document.createElement('script');
+      script.src = 'game.js';
+      document.body.appendChild(script);
+    }
+
+    function showHighScore() {
+      const score = localStorage.highScore || 0;
+      alert('🏆 High Score: ' + score);
+    }
+  </script>
+</body>
+</html>
